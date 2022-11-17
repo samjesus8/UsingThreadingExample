@@ -8,6 +8,7 @@ namespace ThreadingExample
     {
         private int numberToCompute = 0;
         private int highestPercentageReached = 0;
+
         public Main()
         {
             InitializeComponent();
@@ -17,9 +18,14 @@ namespace ThreadingExample
 
         private void startButton_Click(object sender, EventArgs e)
         {
+            stopButton.Enabled = true;
+            startButton.Enabled = false;
+            highestPercentageReached = 0;
+            numberToCompute = (int)numberBox.Value;
+
             if(backgroundWorker1.IsBusy != true) 
             {
-                backgroundWorker1.RunWorkerAsync();
+                backgroundWorker1.RunWorkerAsync(numberToCompute);
             }
         }
 
@@ -84,19 +90,39 @@ namespace ThreadingExample
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
+            //This is where your programs/methods are executed
+
             BackgroundWorker worker = sender as BackgroundWorker;
 
-            var result = ComputeFibonacci((int)numberBox.Value, worker, e);
+            e.Result = ComputeFibonacci((int)numberBox.Value, worker, e);
         }
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            //Update progress bar based on the amount of work done
 
+            this.progressBar1.Value = e.ProgressPercentage;
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            //Executed when the Do_Work method is finished
 
+            startButton.Enabled = true;
+            stopButton.Enabled = false;
+
+            if (e.Cancelled == true) 
+            {
+                outputBox.Text = "Cancelled";
+            }
+            else if (e.Error != null) 
+            {
+                outputBox.Text = "Error: " + e.Error.Message;
+            }
+            else 
+            {
+                outputBox.Text = "Done";
+            }
         }
     }
 }

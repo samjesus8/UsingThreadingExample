@@ -34,6 +34,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.numberBox = new System.Windows.Forms.NumericUpDown();
+            this.outputBox = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.numberBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -93,12 +95,30 @@
             this.numberBox.Size = new System.Drawing.Size(120, 20);
             this.numberBox.TabIndex = 5;
             // 
+            // outputBox
+            // 
+            this.outputBox.Location = new System.Drawing.Point(202, 42);
+            this.outputBox.Name = "outputBox";
+            this.outputBox.Size = new System.Drawing.Size(100, 20);
+            this.outputBox.TabIndex = 6;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(202, 23);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(39, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Output";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(397, 237);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.outputBox);
             this.Controls.Add(this.numberBox);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label1);
@@ -120,6 +140,8 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.NumericUpDown numberBox;
+        private System.Windows.Forms.TextBox outputBox;
+        private System.Windows.Forms.Label label2;
     }
 }
 
